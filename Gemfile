@@ -61,3 +61,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "tailwindcss-rails" # gem for tailwind css
+gem "devise" # gem for authentication
+gem "httparty" # gem for API
+gem "dotenv-rails", groups: [ :development, :test ]
+
+# gem for printing
+gem 'wicked_pdf', '~> 2.8', '>= 2.8.2'
+# gem 'wkhtmltopdf-binary', '~> 0.12.6.9' # having problems with this gem
