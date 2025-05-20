@@ -1,0 +1,24 @@
+<nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo / App Name -->
+      <div class="flex items-center space-x-2">
+        <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
+        </svg>
+        <span class="text-xl font-bold text-red-600">Emergency Guide App</span>
+      </div>
+
+      <!-- Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <%= link_to 'First Aid Topics', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Emergency Contact', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Emergency Kit', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Q&A', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Favorites', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'About', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Logout', '#', class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+      </div>
+    </div>
+  </div>
+</nav>
