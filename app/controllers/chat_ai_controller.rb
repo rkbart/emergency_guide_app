@@ -5,8 +5,9 @@ class ChatAiController < ApplicationController
   end
 
   def ask
-    @question = params[:question]
-    @answer = OpenrouterService.generate_answer(@question)
+    @answer = OpenrouterService.generate_answer(params[:question])
+    # @question = params[:question]
+    # @answer = OpenrouterService.generate_answer(@question)
 
     respond_to do |format|
       format.html do
