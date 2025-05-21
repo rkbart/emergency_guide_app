@@ -1,0 +1,42 @@
+<div class="min-h-screen flex flex-col items-center justify-center p-4 ">
+  <div class="bg-white shadow-xl rounded-2xl p-6 w-full max-w-2xl ">
+    
+    <div class="mb-6 text-gray-700 text-center">
+      <p class="text-lg">
+        💬 <strong>Emergency Guide Chat AI</strong> is here to help you with quick, reliable answers to survival and first aid questions in cases of emergency.
+      </p>
+      <p class="mt-2">
+        Ask anything related to emergency situations — like first aid steps, survival tips, or how to respond in a crisis. The AI will give you a helpful response based on trusted resources and general emergency knowledge.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Note: This is an AI assistant and not a substitute for professional medical advice or emergency services.
+      </p>
+    </div>
+    
+    <h1 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+      Ask a Question
+    </h1>
+
+    <%= form_with url: ask_chat_ai_index_path, method: :post, local: true, class: "space-y-4", data: { turbo: false } do |form| %>
+      <div>
+        <%= form.label :question, "Your question:", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.text_area :question, rows: 4, class: "w-full h-16 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 resize-none" %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit "Ask AI", class: "bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <div id="answer-container">
+      <% if @answer.present? %>
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-semibold mb-1">Answer:</h2>
+          <div class="whitespace-pre-line">
+            <%= @answer %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
