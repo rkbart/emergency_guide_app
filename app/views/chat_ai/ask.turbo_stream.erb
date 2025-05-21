@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "answer-container" do %>
+  <div id="answer-container" class="mt-6 p-4 bg-gray-50 rounded-lg">
+    <h2 class="text-xl font-semibold mb-2">Answer:</h2>
+    <div class="whitespace-pre-line">
+      <%= @answer %>
+    </div>
+  </div>
+<% end %>
