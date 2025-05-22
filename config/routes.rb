@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :categories do
-    collection { post :import }
+  resources :chat_ai, only: [ :index ] do
+    collection do
+      post :ask
+    end
   end
-  root "categories#index"
+  root "home#index"
 end
