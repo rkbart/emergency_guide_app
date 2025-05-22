@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root "home#index"
+  resources :categories do
+    collection { post :import }
+  end
+  root "categories#index"
 end
