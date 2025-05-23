@@ -6,4 +6,10 @@ Rails.application.routes.draw do
     end
   end
   root "home#index"
+
+  resources :checklists do
+    collection do
+      get :print  
+    end
+  end  
 end
