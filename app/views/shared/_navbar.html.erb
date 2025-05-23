@@ -29,16 +29,18 @@
           >
 
             <!-- Bleeding -->
+            <% Category.all.each do |category| %>
             <div x-data="{ open: false, timeout: null }" class="relative group">
               <div
                 @mouseenter="clearTimeout(timeout); open = true"
                 @mouseleave="timeout = setTimeout(() => open = false, 150)"
                 class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Bleeding
+                <%= category.title %>
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </div>
+              
 
               <div
                 x-show="open"
@@ -52,57 +54,7 @@
                 <%= link_to "Tourniquet Use", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
               </div>
             </div>
-
-            <!-- Burns -->
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Burns
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "First-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Second-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Third-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-              </div>
-            </div>
-
-            <!-- Choking -->
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Choking
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "Heimlich Maneuver", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Choking in Children", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Choking in Infants", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-              </div>
-            </div>
-
+            <% end %>
           </div>
         </div>
 

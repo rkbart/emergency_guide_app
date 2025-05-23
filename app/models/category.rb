@@ -5,4 +5,6 @@ class Category < ApplicationRecord
     Category.create! row.to_hash
     end
   end
+
+  has_many :topics
 end

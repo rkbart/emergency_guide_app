@@ -5,4 +5,12 @@ Rails.application.routes.draw do
     end
   end
   root "home#index"
+
+  resources :categories do
+    collection do
+      post :import
+    end
+
+    resources :topics
+  end
 end
