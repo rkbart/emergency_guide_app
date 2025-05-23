@@ -4,13 +4,14 @@ Rails.application.routes.draw do
       post :ask
     end
   end
+
   root "home#index"
 
   resources :categories do
-    collection do
-      post :import
-    end
+    collection { post :import }
 
-    resources :topics
+    resources :topics do
+      collection { post :import }
+    end
   end
 end

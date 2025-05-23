@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_120539) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_23_134834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,10 +22,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_120539) do
 
   create_table "topics", force: :cascade do |t|
     t.string "title"
-    t.string "description"
-    t.string "symptoms"
-    t.string "treatment"
-    t.string "category"
+    t.text "description"
+    t.text "symptoms"
+    t.text "treatment"
     t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_topics_on_category_id"
   end

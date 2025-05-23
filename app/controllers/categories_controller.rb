@@ -3,8 +3,7 @@ class CategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def index
   @category = Category.all
-
-  render json: { message: "Success", data: @category  }
+    # render json: { message: "Success", data: @category  }
   end
 
   def import
@@ -13,7 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    render json: @category
+    # render json: @category
   end
 
   private
@@ -23,6 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   def record_not_found
-    render json: { error: "Record not found" }
+    # render json: { error: "Record not found" }
+    redirect_to root_path, alert: "Record does not exist"
   end
 end
