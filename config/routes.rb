@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :checklists do
     collection do
-      get :print  
+      get :print
     end
-  end  
+  end
 end
