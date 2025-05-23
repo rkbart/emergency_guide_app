@@ -1,0 +1,21 @@
+<%= form_with model: @checklist, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :items, "Item Name", class: "block font-bold" %>
+      <%= f.text_field :items, class: "w-full p-2 border rounded" %>
+    </div>
+  
+    <div class="mb-4">
+      <%= f.label :description, class: "block font-bold" %>
+      <%= f.text_area :description, rows: 3, class: "w-full p-2 border rounded" %>
+    </div>
+  
+    <div class="mb-4">
+      <%= f.label :checked, "Mark as Done", class: "block font-bold" %>
+      <%= f.check_box :checked %>
+    </div>
+  
+    <div>
+      <%= f.submit class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  <% end %>
+  
