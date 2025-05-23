@@ -2,12 +2,14 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo / App Name -->
-      <div class="flex items-center space-x-2">
-        <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
-        </svg>
-        <span class="text-xl font-bold text-red-600">Emergency Guide App</span>
-      </div>
+      <%= link_to root_path, class: "flex items-center space-x-2" do%>
+        <div class="flex items-center space-x-2">
+          <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
+          </svg>
+          <span class="text-xl font-bold text-red-600">Emergency Guide App</span>
+        </div>
+      <% end %>
 
       <!-- Menu -->
       <div class="hidden md:flex space-x-6 items-center">
