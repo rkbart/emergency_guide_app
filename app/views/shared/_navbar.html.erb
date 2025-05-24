@@ -109,12 +109,17 @@
         </div>
 
         <!-- Other Menu Items -->
-        <%= link_to 'Emergency Contact', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Emergency Contact', emergency_contacts_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'Emergency Kit', checklists_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'Q&A', chat_ai_index_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'Favorites', '#', class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'About', '#', class: "text-gray-700 hover:text-red-600 transition" %>
-        <%= link_to 'Logout', '#', class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+        <% end %>
       </div>
     </div>
   </div>
