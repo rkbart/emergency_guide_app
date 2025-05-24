@@ -1,42 +1,48 @@
-<div class="min-h-screen flex flex-col items-center justify-center p-4 ">
-  <div class="bg-white shadow-xl rounded-2xl p-6 w-full max-w-2xl ">
+<div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+  <div class="bg-white shadow-xl rounded-2xl p-6 w-full max-w-2xl border border-gray-200">
     
     <div class="mb-6 text-gray-700 text-center">
-      <p class="text-lg">
-        💬 <strong>Emergency Guide Chat AI</strong> is here to help you with quick, reliable answers to survival and first aid questions in cases of emergency.
+      <div class="flex items-center justify-center space-x-2 mb-3">
+        <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+        </svg>
+        <h2 class="text-xl font-bold text-red-600">Emergency Guide Chat AI</h2>
+      </div>
+      <p class="text-gray-800">
+        Get quick, reliable answers to survival and first aid questions in emergency situations.
       </p>
-      <p class="mt-2">
-        Ask anything related to emergency situations — like first aid steps, survival tips, or how to respond in a crisis. The AI will give you a helpful response based on trusted resources and general emergency knowledge.
+      <p class="mt-2 text-gray-600">
+        Ask about first aid steps, survival tips, or crisis response. The AI provides guidance based on emergency protocols.
       </p>
-      <p class="mt-2 text-sm text-gray-500">
-        Note: This is an AI assistant and not a substitute for professional medical advice or emergency services.
+      <p class="mt-3 text-xs text-gray-500 italic">
+        Note: For informational purposes only. Always contact emergency services in critical situations.
       </p>
     </div>
     
-    <h1 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+    <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center border-b border-gray-100 pb-2">
       Ask a Question
     </h1>
 
-    <%= form_with url: ask_chat_ai_index_path, method: :post, local: true, class: "space-y-4", data: { turbo: false } do |form| %>
+    <%= form_with url: ask_chat_ai_index_path, method: :post, class: "space-y-4", data: { turbo: false } do |form| %>
       <div>
-        <%= form.label :question, "Your question:", class: "block text-gray-700 font-medium mb-2" %>
-        <%= form.text_area :question, rows: 4, class: "w-full h-16 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 resize-none" %>
+        <%= form.label :question, "Your question:", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_area :question, rows: 4, 
+              class: "w-full p-3 border h-18 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 resize-none",
+              placeholder: "e.g. How do I perform CPR? What should I do for a severe burn?" %>
       </div>
 
       <div class="text-center">
-        <%= form.submit "Ask AI", class: "bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer" %>
+        <%= form.submit "Ask AI", 
+              class: "w-full md:w-auto px-6 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition" %>
       </div>
     <% end %>
 
     <div id="answer-container">
-      <% if @answer.present? %>
-        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
-          <h2 class="text-xl font-semibold mb-1">Answer:</h2>
-          <div class="whitespace-pre-line">
-            <%= @answer %>
-          </div>
-        </div>
+      <% if local_assigns[:answer] || @answer %>
+        <%= render partial: 'answer', locals: { answer: (local_assigns[:answer] || @answer) } %>
       <% end %>
     </div>
+
   </div>
 </div>
+
