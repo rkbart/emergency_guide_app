@@ -28,32 +28,31 @@
             class="absolute left-0 mt-2 w-60 bg-gray-800 shadow-lg z-50 text-white"
           >
 
-            <!-- Bleeding -->
-            <% Category.all.each do |category| %>
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                <%= category.title %>
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              
+            <!-- First Aid Column -->
+              <% Category.includes(:topics).each do |category| %>
+              <div x-data="{ open: false, timeout: null }" class="relative group">
+                <div
+                  @mouseenter="clearTimeout(timeout); open = true"
+                  @mouseleave="timeout = setTimeout(() => open = false, 150)"
+                  class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
+                  <%= category.category.titleize  %>
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
 
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "Stop Bleeding", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Apply Pressure", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Tourniquet Use", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
+                <div
+                  x-show="open"
+                  x-transition
+                  @mouseenter="clearTimeout(timeout); open = true"
+                  @mouseleave="timeout = setTimeout(() => open = false, 150)"
+                  class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
+                >
+                  <% category.topics.each do |topic| %>
+                    <%= link_to topic.title, category_topic_path(category, topic), class: "block px-5 py-3 hover:bg-gray-600 transition" %>
+                  <% end %>
+                </div>
               </div>
-            </div>
             <% end %>
           </div>
         </div>

@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
 
   def import
   Category.import(params[:file])
-  redirect_to root_url, notice: "Category Data imported"
+  redirect_to categories_path, notice: "Category Data imported"
   end
 
   def show

@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_id
-  before_action :set_action, only: %i[show ]
+  before_action :set_action, only: %i[ show ]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
 
   def import
     Topic.import(params[:file])
-    redirect_to topics_path, notice: "Topics imported successfully!"
+    redirect_to category_topics_path, notice: "Topics imported successfully!"
   end
 
   def show

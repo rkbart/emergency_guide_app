@@ -1,18 +1,11 @@
-<table class="min-w-full table-auto border border-gray-300 mt-4">
-  <thead class="bg-gray-100">
-    <tr>
-      <th class="border border-gray-300 px-4 py-2 text-left">Title</th>
-      <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
-      <th class="border border-gray-300 px-4 py-2 text-left">Symptoms</th>
-      <th class="border border-gray-300 px-4 py-2 text-left">Treatment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="hover:bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2"><%= @topic.title %></td>
-      <td class="border border-gray-300 px-4 py-2"><%= @topic.description %></td>
-      <td class="border border-gray-300 px-4 py-2"><%= @topic.symptoms %></td>
-      <td class="border border-gray-300 px-4 py-2"><%= @topic.treatment %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-xl">
+  <p><strong><%= @topic.category.category.upcase %> </strong></p>
+  <p><strong><%= @topic.category.description %> </strong></p>
+</div>
+  <hr class="my-4">
+<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-lg">
+  <p><strong>Title:</strong> <%= @topic.title %></p>
+  <p><strong>Description:</strong> <%= @topic.description %></p>
+  <p><strong>Symptoms:</strong> <%= @topic.symptoms %></p>
+  <p><strong>Treatment:</strong> <%= @topic.treatment %></p>
+</div>
