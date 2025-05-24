@@ -1,21 +1,25 @@
-<%= form_with model: @checklist, local: true do |f| %>
-    <div class="mb-4">
-      <%= f.label :items, "Item Name", class: "block font-bold" %>
-      <%= f.text_field :items, class: "w-full p-2 border rounded" %>
-    </div>
-  
-    <div class="mb-4">
-      <%= f.label :description, class: "block font-bold" %>
-      <%= f.text_area :description, rows: 3, class: "w-full p-2 border rounded" %>
-    </div>
-  
-    <div class="mb-4">
-      <%= f.label :checked, "Mark as Done", class: "block font-bold" %>
-      <%= f.check_box :checked %>
-    </div>
-  
-    <div>
-      <%= f.submit class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
-    </div>
-  <% end %>
-  
+<%= form_with model: @checklist, local: true, class: "max-w-md mx-auto bg-white p-6 rounded-lg shadow-md mt-8" do |f| %>
+  <h2 class="text-xl font-bold text-red-600 mb-6 border-b pb-2">
+    <%= @checklist.new_record? ? "Add New Checklist Item" : "Edit Checklist Item" %>
+  </h2>
+
+  <div class="mb-6">
+    <%= f.label :items, "Item Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_field :items, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500", placeholder: "e.g. First Aid Kit, Flashlight" %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label :description, "Description (Optional)", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_area :description, rows: 3, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500", placeholder: "Add any important details..." %>
+  </div>
+
+  <div class="mb-6 flex items-center">
+    <%= f.check_box :checked, class: "h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded" %>
+    <%= f.label :checked, "Mark as completed", class: "ml-2 block text-sm text-gray-700" %>
+  </div>
+
+  <div class="flex justify-between items-center pt-4 border-t">
+    <%= link_to "Cancel", checklists_path, class: "px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+    <%= f.submit @checklist.new_record? ? "Add Item" : "Update Item", class: "ml-3 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+  </div>
+<% end %>
