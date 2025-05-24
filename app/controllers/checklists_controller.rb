@@ -37,7 +37,7 @@ class ChecklistsController < ApplicationController
       @checklists = Checklist.all
       render pdf: "emergency_checklist", template: "checklists/print", formats: [:html], layout: "pdf"
     end
-  
+      
     private
   
     def set_checklist
