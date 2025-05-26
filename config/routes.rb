@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :emergency_contacts
+  resources :checklists
 
   unauthenticated do
     root to: "home#home", as: :unauthenticated_root
@@ -16,12 +17,8 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :topics
-    # collection { post :import }
   end
 
-  # resources :topics do
-  #   collection { post :import }
-  # end
 
   resource :favorite, only: [ :create, :destroy ]
 
@@ -29,12 +26,6 @@ Rails.application.routes.draw do
     collection do
       post :ask
       get :ask
-    end
-  end
-
-  resources :checklists do
-    collection do
-      get :print
     end
   end
 end
