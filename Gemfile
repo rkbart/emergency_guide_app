@@ -70,3 +70,4 @@ gem "dotenv-rails", groups: [ :development, :test ]
 # gem for printing
 gem 'wicked_pdf', '~> 2.8', '>= 2.8.2'
 # gem 'wkhtmltopdf-binary', '~> 0.12.6.9' # having problems with this gem
+
