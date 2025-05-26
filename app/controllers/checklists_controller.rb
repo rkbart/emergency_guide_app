@@ -12,7 +12,6 @@ class ChecklistsController < ApplicationController
 
   def create
     @checklist = current_user.checklists.new(checklist_params)
-
     if @checklist.save
       redirect_to checklists_path, notice: "Item added successfully."
     else
@@ -31,15 +30,8 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    @checklist.destroy
-    redirect_to checklists_path, notice: "Item removed."
-  end
-
-
-  private
-
-  def set_checklist
-    @checklist = current_user.checklists.find(params[:id])
+      @checklist.destroy
+      redirect_to checklists_path, notice: "Item removed."
   end
 
   private
@@ -49,6 +41,6 @@ class ChecklistsController < ApplicationController
   end
 
   def checklist_params
-    params.require(:checklist).permit(:items, :description, :checked)
+    params.require(:checklist).permit(:item, :description, :checked)
   end
 end

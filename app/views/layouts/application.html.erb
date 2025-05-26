@@ -16,17 +16,18 @@
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   </head>
 
   <body class="bg-gray-50 text-gray-800 font-sans">
     <%= render 'shared/navbar' %>
 
-    <main class="pt-18 px-4">
+    <main class="px-4 <%= @disable_main_padding ? '' : 'pt-16' %>">
       <%= yield %>
     </main>
     
-    <div class="fixed bottom-0 left-0 w-full">
+    <div class="fixed bottom-0 left-0 w-full z-[100] print:hidden">
       <% flash.each do |type, message| %>
         <% next if message.blank? %>
         <div class="<%= flash_class(type) %> py-2 px-4 text-center italic">

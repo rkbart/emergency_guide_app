@@ -1,0 +1,32 @@
+<% content_for :head do %>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              500: '#EF4444',
+              600: '#DC2626',
+            },
+            secondary: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<% end %>
+
+<%= render 'landing/hero' %>
+<%= render 'landing/features' %>
+<%= render 'landing/how_it_works' %>
+<%= render 'landing/testimonials' %>
+<%= render 'landing/cta' %>
+<%= render 'landing/footer' %>
