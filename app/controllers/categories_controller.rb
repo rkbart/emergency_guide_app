@@ -7,8 +7,12 @@ class CategoriesController < ApplicationController
   end
 
   def import
-  Category.import(params[:file])
-  redirect_to categories_path, notice: "Category Data imported"
+    if params[:file].present?
+      Category.import(params[:file])
+      redirect_to categories_path, notice: "Category data imported."
+    else
+      redirect_to categories_path, alert: "No file attached!"
+    end
   end
 
   def show

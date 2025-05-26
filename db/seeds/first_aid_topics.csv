@@ -1,0 +1,46 @@
+title,description,symptoms,treatment,category
+Asthma Attack,A sudden worsening of asthma symptoms caused by the tightening of muscles around the airways,"Shortness of breath, wheezing, chest tightness","Sit the person upright, help them use their inhaler, and seek emergency help if needed",breathing problem
+Croup,A viral infection that causes swelling in the airways and a barking cough,"Barking cough, hoarseness, difficulty breathing, stridor","Keep the child calm, use a cool mist humidifier, seek medical care if symptoms are severe",breathing problem
+Drowning,"A condition resulting from submersion in water, causing breathing difficulty or cessation","Unconsciousness, bluish skin, not breathing","Call emergency services, begin CPR if the person is not breathing",breathing problem
+Hyperventilation,Excessive breathing causing a drop in carbon dioxide levels in the blood,"Rapid breathing, lightheadedness, tingling in hands or feet","Encourage slow breathing, reassure the person, and seek help if it doesn’t resolve",breathing problem
+Animal Bites,"Injuries caused by bites from animals, potentially leading to infection","Puncture wounds, bleeding, swelling, redness","Clean the wound, apply antiseptic, seek medical attention, consider tetanus shot",minor illnesses and injuries
+Cuts and Grazes,Minor skin injuries caused by scraping or cutting the skin,"Bleeding, pain, redness","Clean the area, stop bleeding, apply dressing",minor illnesses and injuries
+Blisters,Fluid-filled bumps under the skin caused by friction or burns,"Raised fluid-filled bumps, tenderness",Do not pop. Cover with sterile dressing. Keep clean and dry,minor illnesses and injuries
+Diarrhea,Frequent loose or watery bowel movements often caused by infection,"Abdominal cramps, loose stools, nausea","Hydration with oral rehydration salts, rest, and monitor symptoms",minor illnesses and injuries
+Electric Shock,Injury caused by electrical current passing through the body,"Burns, unconsciousness, muscle spasms","Turn off power, call emergency services, do not touch the person directly if power is on",minor illnesses and injuries
+Fever,Elevated body temperature due to infection or illness,"Sweating, chills, weakness","Stay hydrated, rest, and use fever-reducing medication as directed",minor illnesses and injuries
+Hay Fever,Allergic reaction to pollen causing cold-like symptoms,"Sneezing, runny nose, itchy eyes","Avoid allergens, use antihistamines or nasal sprays",minor illnesses and injuries
+Shock,A life-threatening condition caused by insufficient blood flow to organs,"Pale skin, rapid pulse, shallow breathing","Lay the person down, raise legs, keep warm, and call emergency services",bleeding
+Severe Bleeding,Heavy bleeding from a wound that may be life-threatening,"Continuous blood loss, pale skin, weakness","Apply pressure, use bandages, call emergency services",bleeding
+Nosebleeds,Bleeding from the nose due to trauma or dry air,Blood from one or both nostrils,"Sit forward, pinch the nose, apply ice if needed",bleeding
+Broken Bones and Fractures,Breaks or cracks in bones due to trauma,"Swelling, deformity, pain, inability to move","Immobilize the limb, apply ice, seek medical attention",bones and muscles
+Dislocated Joints,Bones forced out of their normal position,"Deformity, pain, swelling, immobility",Do not try to pop back. Immobilize and seek emergency care,bones and muscles
+Sprains and Strains,Injury to ligaments (sprains) or muscles (strains),"Pain, swelling, bruising, limited movement","RICE method (Rest, Ice, Compress, Elevate)",bones and muscles
+Spinal Injury,Damage to the spine that can cause paralysis,"Pain, numbness, loss of movement below injury",Do not move the person. Call emergency services. Stabilize head and neck,bones and muscles
+Hypoglycemia,A condition where blood sugar levels fall too low,"Sweating, shaking, dizziness, confusion",Give sugary food/drink. Call emergency services if unconscious,diabetes
+Hyperglycemia,A condition where blood sugar levels are too high,"Thirst, frequent urination, fatigue","Encourage fluids, monitor insulin, seek medical help",diabetes
+Chemical Burns,Tissue damage caused by chemicals,"Pain, redness, blistering","Flush with water, remove contaminated clothing, seek emergency help",heat and cold
+Minor Scalds and Burns,Superficial skin burns from heat,"Redness, pain, slight swelling","Cool water for 10 mins, cover with sterile dressing",heat and cold
+Severe Burns,Deep or widespread skin burns,"Charred/white skin, severe pain","Call emergency services, cover with clean cloth",heat and cold
+Dehydration,Lack of enough water in the body,"Dry mouth, dizziness, dark urine",Drink fluids or use oral rehydration salts,heat and cold
+Heatstroke,Body overheats and cannot cool down,"Confusion, dry skin, unconsciousness","Call emergency help, cool the person, remove excess clothing",heat and cold
+Heat Exhaustion,Heat-related illness from fluid loss,"Sweating, weakness, nausea","Cool place, hydrate, rest",heat and cold
+Frostbite,Freezing of skin and tissues,"Pale, numb skin, blisters","Rewarm slowly, do not rub, seek medical help",heat and cold
+Hypothermia,Dangerous drop in body temperature,"Shivering, drowsiness, confusion","Warm gradually, dry clothes, call emergency help",heat and cold
+Heat Rash,Skin irritation from sweat in hot weather,"Red blisters, itching","Cool skin, dry the area, use calamine lotion",heat and cold
+Anaphylaxis,Severe life-threatening allergic reaction,"Swelling, difficulty breathing, rash","Use EpiPen, call emergency help immediately",allergy
+Cardiac Arrest,Sudden heart stop causing loss of consciousness,"No breathing, no pulse, collapse","Call emergency help, start CPR, use AED",heart conditions
+Heart Attack,Blocked blood flow to heart muscle,"Chest pain, breathlessness, nausea","Call emergency help, keep person calm, give aspirin if not allergic",heart conditions
+Angina Attack,Chest pain from reduced blood to heart,"Chest tightness, shortness of breath","Rest, give prescribed nitroglycerin, call for help if pain persists",heart conditions
+Alcohol Poisoning,Dangerous alcohol overdose,"Vomiting, confusion, slow breathing","Call emergency help, place in recovery position",poisoning
+Food Poisoning,Illness from contaminated food,"Nausea, diarrhea, cramps","Rest, hydrate, seek medical care for severe cases",poisoning
+Drink Spiking,Drugs or alcohol added to drink without consent,"Confusion, drowsiness, memory loss","Seek immediate help, stay with person",poisoning
+Carbon Monoxide Poisoning,Toxic gas inhalation,"Headache, nausea, confusion","Move to fresh air, call emergency help",poisoning
+Poisoning,Exposure to toxic substances,"Nausea, confusion, difficulty breathing","Call poison center, don’t induce vomiting unless advised",poisoning
+Narcotics Poisoning,Opioid overdose,"Slow breathing, unconsciousness","Call emergency, give naloxone if available",poisoning
+Depressants and Tranquilizers,Overdose of sedatives,"Drowsiness, slow breathing","Call emergency help, keep person awake",poisoning
+Painkiller Overdose,Too much pain medication taken,"Drowsiness, confusion, unconsciousness","Call emergency help, don’t induce vomiting",poisoning
+Stimulants and Hallucinogen Poisoning,Overdose on psychoactive drugs,"Agitation, high heart rate, hallucinations","Stay calm, call emergency, keep person still",poisoning
+Solvent Poisoning,Inhalation or swallowing toxic fumes,"Dizziness, nausea, confusion","Move to fresh air, call emergency help",poisoning
+Epilepsy,Neurological disorder with recurring seizures,"Jerking, unconsciousness, confusion","Clear area, time seizure, call help if lasts >5 mins",seizures
+Stroke,Brain damage due to interrupted blood flow,"Facial droop, arm weakness, speech difficulty","Call emergency help, don’t give food or drink",stroke

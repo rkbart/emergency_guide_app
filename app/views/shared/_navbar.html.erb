@@ -18,8 +18,10 @@
           <button
             @mouseenter="clearTimeout(timeout); open = true"
             @mouseleave="timeout = setTimeout(() => open = false, 150)"
-            class="text-gray-700 hover:text-red-600 transition  cursor-pointer">
+            class="text-gray-700 hover:text-red-600 transition cursor-pointer flex items-center">
             First Aid
+            <svg class="w-4 h-4 ml-1 transition-transform" :class="{ 'rotate-90': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </button>
 
           <div
@@ -27,7 +29,7 @@
             x-transition
             @mouseenter="clearTimeout(timeout); open = true"
             @mouseleave="timeout = setTimeout(() => open = false, 150)"
-            class="absolute left-0 mt-2 w-60 bg-gray-800 shadow-lg z-50 text-white"
+            class="absolute left-0 mt-2 w-60 bg-white shadow-lg z-50 text-gray-700"
           >
 
             <!-- First Aid Column -->
@@ -36,7 +38,7 @@
                 <div
                   @mouseenter="clearTimeout(timeout); open = true"
                   @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                  class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
+                  class="flex justify-between items-center px-5 py-3 hover:bg-gray-100 cursor-pointer">
                   <%= category.category.titleize  %>
                   <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -48,10 +50,10 @@
                   x-transition
                   @mouseenter="clearTimeout(timeout); open = true"
                   @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                  class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
+                  class="absolute top-0 left-full ml-1 w-60 bg-white shadow-lg z-50"
                 >
                   <% category.topics.each do |topic| %>
-                    <%= link_to topic.title, category_topic_path(category, topic), class: "block px-5 py-3 hover:bg-gray-600 transition" %>
+                    <%= link_to topic.title, category_topics_path(category, topic), class: "block px-5 py-3 hover:bg-gray-100 transition" %>
                   <% end %>
                 </div>
               </div>

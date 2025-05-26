@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   resources :favorites, only: [ :index ]
 
   resources :categories do
-    collection { post :import }
+    resources :topics
+    # collection { post :import }
   end
 
-  resources :topics do
-    collection { post :import }
-  end
+  # resources :topics do
+  #   collection { post :import }
+  # end
 
   resource :favorite, only: [ :create, :destroy ]
 
