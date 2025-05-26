@@ -2,12 +2,14 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo / App Name -->
-      <div class="flex items-center space-x-2">
-        <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
-        </svg>
-        <span class="text-xl font-bold text-red-600">Emergency Guide App</span>
-      </div>
+      <%= link_to root_path, class: "flex items-center space-x-2" do%>
+        <div class="flex items-center space-x-2">
+          <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
+          </svg>
+          <span class="text-xl font-bold text-red-600">Emergency Guide App</span>
+        </div>
+      <% end %>
 
       <!-- Menu -->
       <div class="hidden md:flex space-x-6 items-center">
@@ -28,91 +30,47 @@
             class="absolute left-0 mt-2 w-60 bg-gray-800 shadow-lg z-50 text-white"
           >
 
-            <!-- Bleeding -->
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Bleeding
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+            <!-- First Aid Column -->
+              <% Category.includes(:topics).each do |category| %>
+              <div x-data="{ open: false, timeout: null }" class="relative group">
+                <div
+                  @mouseenter="clearTimeout(timeout); open = true"
+                  @mouseleave="timeout = setTimeout(() => open = false, 150)"
+                  class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
+                  <%= category.category.titleize  %>
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
 
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "Stop Bleeding", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Apply Pressure", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Tourniquet Use", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
+                <div
+                  x-show="open"
+                  x-transition
+                  @mouseenter="clearTimeout(timeout); open = true"
+                  @mouseleave="timeout = setTimeout(() => open = false, 150)"
+                  class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
+                >
+                  <% category.topics.each do |topic| %>
+                    <%= link_to topic.title, category_topic_path(category, topic), class: "block px-5 py-3 hover:bg-gray-600 transition" %>
+                  <% end %>
+                </div>
               </div>
-            </div>
-
-            <!-- Burns -->
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Burns
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "First-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Second-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Third-Degree Burns", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-              </div>
-            </div>
-
-            <!-- Choking -->
-            <div x-data="{ open: false, timeout: null }" class="relative group">
-              <div
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="flex justify-between items-center px-5 py-3 hover:bg-gray-700 cursor-pointer">
-                Choking
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              <div
-                x-show="open"
-                x-transition
-                @mouseenter="clearTimeout(timeout); open = true"
-                @mouseleave="timeout = setTimeout(() => open = false, 150)"
-                class="absolute top-0 left-full ml-1 w-60 bg-gray-700 shadow-lg z-50"
-              >
-                <%= link_to "Heimlich Maneuver", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Choking in Children", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-                <%= link_to "Choking in Infants", "#", class: "block px-5 py-3 hover:bg-gray-600 transition" %>
-              </div>
-            </div>
-
+            <% end %>
           </div>
         </div>
 
         <!-- Other Menu Items -->
-        <%= link_to 'Emergency Contact', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Emergency Contact', emergency_contacts_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'Emergency Kit', checklists_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'Q&A', chat_ai_index_path, class: "text-gray-700 hover:text-red-600 transition" %>
-        <%= link_to 'Favorites', '#', class: "text-gray-700 hover:text-red-600 transition" %>
+        <%= link_to 'Favorites', favorites_path, class: "text-gray-700 hover:text-red-600 transition" %>
         <%= link_to 'About', '#', class: "text-gray-700 hover:text-red-600 transition" %>
-        <%= link_to 'Logout', '#', class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+        <% end %>
       </div>
     </div>
   </div>

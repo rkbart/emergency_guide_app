@@ -1,0 +1,26 @@
+<h1 class="text-2xl font-bold mb-6">Edit Emergency Contact</h1>
+
+<%= form_with(model: @emergency_contact, local: true, class: "max-w-md space-y-6") do |form| %>
+  <div>
+    <%= form.label :agency_name, class: "block font-semibold mb-1" %>
+    <%= form.text_field :agency_name, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+  
+  <div>
+    <%= form.label :phone_number, class: "block font-semibold mb-1" %>
+    <%= form.text_field :phone_number, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+  
+  <div>
+    <%= form.label :location, class: "block font-semibold mb-1" %>
+    <%= form.text_field :location, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+  
+  <div>
+    <%= form.submit "Update Contact", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded cursor-pointer" %>
+  </div>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to 'Back', emergency_contacts_path, class: "text-gray-600 hover:underline" %>
+</div>

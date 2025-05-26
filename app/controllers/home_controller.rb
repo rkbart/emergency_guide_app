@@ -1,3 +1,6 @@
 class HomeController < ApplicationController
-  def index; end
+  helper ArticlesHelper
+  def index
+    @featured_articles = ReliefWebService.fetch_articles(3)
+  end
 end

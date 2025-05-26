@@ -1,0 +1,19 @@
+<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-xl">
+  <p><strong><%= @topic.category.category.upcase %> </strong></p>
+  <p><strong><%= @topic.category.description %> </strong></p>
+</div>
+  <hr class="my-4">
+<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-lg">
+  <p><strong>Title:</strong> <%= @topic.title %></p>
+  <p><strong>Description:</strong> <%= @topic.description %></p>
+  <p><strong>Symptoms:</strong> <%= @topic.symptoms %></p>
+  <p><strong>Treatment:</strong> <%= @topic.treatment %></p>
+</div>
+<br>
+<% if current_user %>
+  <% if current_user.favorite_topics.include?(@topic) %>
+    <%= button_to "★ Favorited", category_topic_favorite_path(@topic.category, @topic), method: :delete, class: "text-yellow-500" %>
+  <% else %>
+    <%= button_to "☆ Add to Favorites", category_topic_favorite_path(@topic.category, @topic), method: :post, class: "text-gray-500" %>
+  <% end %>
+<% end %>
