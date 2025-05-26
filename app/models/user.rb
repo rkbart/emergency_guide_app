@@ -13,4 +13,7 @@ class User < ApplicationRecord
   def set_default_data
     UserSetupService.new(self).perform
   end
+
+  has_many :favorites
+  has_many :favorite_topics, through: :favorites, source: :topic
 end
