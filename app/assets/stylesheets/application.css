@@ -19,12 +19,47 @@ pdf {
     background: #fff !important;
   }
 
-  .print-hidden {
+  .print-hidden,
+  [class~="print:hidden"] {
     display: none !important;
+  }
+
+  /* Ensure no fixed elements appear */
+  .fixed,
+  .sticky {
+    position: static !important;
   }
 
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 12px !important;
+  }
+}
+
+.flash-message {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  animation: fadeInOut 5s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
