@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Emergency Checklist</title>
+    <style>
+      body { font-family: Arial, sans-serif; font-size: 14px; }
+      h1 { text-align: center; margin-bottom: 20px; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+      th { background-color: #f8f8f8; }
+    </style>
+  </head>
+  <body>
+    <h1>Emergency Kit Checklist</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @checklists.each do |item| %>
+          <tr>
+            <td><%= item.items %></td>
+            <td><%= item.description %></td>
+            <td><%= item.checked ? "☑" : "☐" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
