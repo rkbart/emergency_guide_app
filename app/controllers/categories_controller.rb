@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def index
-    @categories = Category.includes(:topics).all
+    @q = Category.ransack(params[:q])
+    @categories = @q.result(distinct: true).includes(:topics)
   end
 
   def show

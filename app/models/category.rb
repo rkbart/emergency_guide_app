@@ -1,9 +1,10 @@
-require "csv"
 class Category < ApplicationRecord
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-    Category.create! row.to_hash
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    [ "category", "description", "title" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "topics" ]
   end
 
   has_many :topics
