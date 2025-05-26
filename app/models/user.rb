@@ -24,4 +24,7 @@ class User < ApplicationRecord
 
     emergency_contacts.create!(default_contacts)
   end
+
+  has_many :favorites
+  has_many :favorite_topics, through: :favorites, source: :topic
 end
