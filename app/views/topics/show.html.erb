@@ -9,3 +9,10 @@
   <p><strong>Symptoms:</strong> <%= @topic.symptoms %></p>
   <p><strong>Treatment:</strong> <%= @topic.treatment %></p>
 </div>
+<br>
+<% if current_user.favorite_topics.include?(@topic) %>
+  <%= button_to "★ Favorited", category_topic_favorite_path(@topic.category, @topic), method: :delete, class: "text-yellow-500" %>
+<% else %>
+  <%= button_to "☆ Add to Favorites", category_topic_favorite_path(@topic.category, @topic), method: :post, class: "text-gray-500" %>
+<% end %>
+

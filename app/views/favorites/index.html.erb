@@ -1,0 +1,16 @@
+<h2 class="text-2xl font-bold mb-4">Your Favorite Topics</h2>
+
+<% if @favorite_topics.any? %>
+  <ul class="space-y-2">
+    <% @favorite_topics.each do |topic| %>
+      <li>
+        <%= link_to topic.title, [topic.category, topic], class: "text-blue-600 hover:underline" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="text-gray-600 mb-4">
+    You haven't added any favorite topics yet.
+  </div>
+  <%= link_to "Browse Topics", categories_path, class: "inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition" %>
+<% end %>

@@ -10,13 +10,17 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :categories do
+resources :favorites, only: [ :index ]
+
+resources :categories do
+  collection { post :import }
+
+  resources :topics do
     collection { post :import }
 
-    resources :topics do
-      collection { post :import }
-    end
+    resource :favorite, only: [ :create, :destroy ]
   end
+end
 
   resources :checklists do
     collection do
