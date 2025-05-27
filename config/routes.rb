@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   root to: "home#home"
 
   resources :categories do
-    resources :topics
+    collection { post :import }
+    resources :topics do
+      collection { post :import }
+    end
   end
 
   resources :favorites, only: [ :index, :create, :destroy ]

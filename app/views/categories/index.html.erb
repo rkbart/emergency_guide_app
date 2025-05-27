@@ -87,6 +87,27 @@
           <div class="mt-8 flex justify-center">
             <%= link_to "View Emergency Contacts", emergency_contacts_path, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
           </div>
+          <div class="mt-6" data-controller="csv-import">
+            <h3 class="text-xl font-semibold mb-6">Import Data?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-controller="csv-import">
+          <!-- Category CSV Import -->
+          <div class="bg-white rounded-lg shadow p-2">
+            <h4 class="text-lg font-semibold text-blue-600 mb-2">Import Categories</h4>
+            <%= form_with url: import_categories_path, method: :post, html: { multipart: true, data: { csv_import_target: "form" } } do |f| %>
+              <%= f.file_field :file, class: "block w-full mb-2 bg-gray-100 border border-gray-300 rounded px-2 py-2 text-sm cursor-pointer file:cursor-pointer", data: { csv_import_target: "file" } %>
+              <%= f.password_field :password, placeholder: "Confirm password", class: "block w-full mb-2 border border-gray-300 rounded px-2 py-1", data: { csv_import_target: "password" } %>
+              <%= f.submit "Import Category CSV", class: "w-full px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700", data: { action: "click->csv-import#submit" } %>
+            <% end %>
+          </div>
+          <!-- Topic CSV Import -->
+          <div class="bg-white rounded-lg shadow p-2">
+            <h4 class="text-lg font-semibold text-blue-600 mb-2">Import Topics</h4>
+            <%= form_with url: import_category_topics_path(@categories), method: :post, html: { multipart: true, data: { csv_import_target: "form" } } do |f| %>
+              <%= f.file_field :file, class: "block w-full mb-2 bg-gray-100 border border-gray-300 rounded px-2 py-2 text-sm cursor-pointer file:cursor-pointer", data: { csv_import_target: "file" } %>
+              <%= f.password_field :password, placeholder: "Confirm password", class: "block w-full mb-2 border border-gray-300 rounded px-2 py-1", data: { csv_import_target: "password" } %>
+              <%= f.submit "Import Topic CSV", class: "w-full px-4 py-1 bg-blue-600 text-white rounded hover:bg-green-700", data: { action: "click->csv-import#submit" } %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
