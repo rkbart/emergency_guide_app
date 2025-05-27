@@ -1,9 +1,9 @@
 class ChecklistsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [ :index ]
   before_action :set_checklist, only: [ :edit, :update, :destroy ]
 
   def index
-    @checklists = current_user.checklists
+    @checklists = Checklist.for_display(current_user)
   end
 
   def new
@@ -30,17 +30,22 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-      @checklist.destroy
-      redirect_to checklists_path, notice: "Item removed."
+    @checklist.destroy
+    redirect_to checklists_path, notice: "Item removed."
   end
 
   private
 
   def set_checklist
-    @checklist = current_user.checklists.find(params[:id])
+    @checklist =
+      if current_user
+        current_user.checklists.find(params[:id])
+      else
+        Checklist.system_defaults.find(params[:id])
+      end
   end
 
   def checklist_params
-    params.require(:checklist).permit(:item, :description, :checked)
+    params.require(:checklist).permit(:items, :description, :checked)
   end
 end

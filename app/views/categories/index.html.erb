@@ -20,10 +20,10 @@
           </svg>
         </div>
         <%= f.search_field :category_or_title_or_description_or_topics_title_or_topics_description_cont, 
-          class: "focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-12 py-3 border-gray-300 rounded-md",
+          class: "focus:ring-orange-500 focus:border-orange-500 block w-full pl-10 pr-12 py-3 border-gray-300 rounded-md",
           placeholder: "Search categories and topics..." %>
         <div class="absolute inset-y-0 right-0 flex items-center">
-          <%= f.submit "Search", class: "px-4 py-2 bg-red-600 text-white rounded-r-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer" %>
+          <%= f.submit "Search", class: "px-4 py-2 bg-orange-700 text-white rounded-r-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 cursor-pointer" %>
         </div>
       <% end %>
     </div>
@@ -33,16 +33,16 @@
       <% @categories.each do |category| %>
         <div class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300 ease-in-out">
           <!-- Category Header -->
-          <div class="flex-shrink-0 bg-red-600 px-6 py-4">
+          <div class="flex-shrink-0 bg-orange-700 px-6 py-4">
             <h2 class="text-xl font-bold text-white">
-              <%= link_to category.category.titleize, category_path(category), class: "hover:text-red-100" %>
+              <%= link_to category.category.titleize, category_path(category), class: "hover:text-orange-100" %>
             </h2>
           </div>
           
           <!-- Category Content -->
           <div class="flex-1 p-6 flex flex-col justify-between">
             <div class="flex-1">
-              <p class="text-sm text-red-600 font-medium">
+              <p class="text-sm text-orange-700 font-medium">
                 <%= pluralize(category.topics.count, 'topic') %>
               </p>
               <p class="mt-3 text-base text-gray-500">
@@ -52,7 +52,7 @@
             <div class="mt-6">
               <div class="flex space-x-1">
                 <% category.topics.limit(3).each do |topic| %>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
                     <%= link_to topic.title.truncate(15), category_topic_path(category, topic) %>
                   </span>
                 <% end %>
@@ -67,25 +67,25 @@
           
           <!-- View All Button -->
           <div class="bg-gray-50 px-6 py-4">
-            <%= link_to "View all #{category.category.titleize} topics", category_path(category), class: "text-sm font-medium text-red-600 hover:text-red-500" %>
+            <%= link_to "View all #{category.category.titleize} topics", category_path(category), class: "text-sm font-medium text-orange-700 hover:text-orange-500" %>
           </div>
         </div>
       <% end %>
     </div>
 
     <!-- Emergency Contacts CTA -->
-    <div class="mt-16 bg-red-50 rounded-lg shadow overflow-hidden">
+    <div class="mt-16 bg-orange-50 rounded-lg shadow overflow-hidden">
       <div class="px-6 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div class="max-w-2xl mx-auto text-center">
           <h2 class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
             <span class="block">Need immediate help?</span>
-            <span class="block text-red-600">Emergency Contacts</span>
+            <span class="block text-orange-700">Emergency Contacts</span>
           </h2>
           <p class="mt-4 text-lg leading-6 text-gray-500">
             Quick access to local emergency services and important contacts
           </p>
           <div class="mt-8 flex justify-center">
-            <%= link_to "View Emergency Contacts", emergency_contacts_path, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+            <%= link_to "View Emergency Contacts", emergency_contacts_path, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange-700 hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" %>
           </div>
         </div>
       </div>

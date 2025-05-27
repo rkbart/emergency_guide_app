@@ -4,32 +4,25 @@ class UserSetupService
   end
 
   def perform
-    create_emergency_contacts
-    create_checklist_items
+    copy_default_contacts
+    copy_default_checklists
   end
 
   private
 
-  def create_emergency_contacts
-    contacts = DefaultDataService.load_emergency_contacts
-    contacts.each do |contact|
-      @user.emergency_contacts.create!(contact)
+  def copy_default_contacts
+    EmergencyContact.system_defaults.each do |contact|
+      @user.emergency_contacts.create!(
+        contact.attributes.except("id", "created_at", "updated_at", "is_default")
+      )
     end
-  rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.error "Failed to create emergency contacts: #{e.message}"
   end
 
-  def create_checklist_items
-    DefaultDataService.load_checklist_items.each do |item|
-      next if item["items"].blank? # Skip blank items
-
+  def copy_default_checklists
+    Checklist.system_defaults.each do |item|
       @user.checklists.create!(
-        items: item["items"].to_s.strip, # Convert to string and remove whitespace
-        description: item["description"].to_s.strip,
-        checked: false
+        item.attributes.except("id", "created_at", "updated_at", "is_default")
       )
-    rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.error "Failed to create item '#{item['items']}': #{e.message}"
     end
   end
 end
