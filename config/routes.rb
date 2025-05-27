@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root to: "home#home"
 
-  get '/about', to: 'home#about', as: :about
+  get "/about", to: "home#about", as: :about
 
   resources :categories do
     collection { post :import }
