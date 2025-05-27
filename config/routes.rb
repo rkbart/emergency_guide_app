@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "chats/show"
   devise_for :users
   resources :emergency_contacts
   resources :checklists
