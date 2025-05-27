@@ -25,7 +25,7 @@ class EmergencyContactsController < ApplicationController
 
   def update
     if @emergency_contact.update(emergency_contact_params)
-      redirect_to @emergency_contact, notice: "Emergency contact updated."
+      redirect_to emergency_contacts_path, notice: "Emergency contact updated."
     else
       render :edit
     end

@@ -69,9 +69,9 @@
         <%= link_to 'About', about_path, class: "text-gray-700 hover:text-red-600 transition" %>
 
         <% if user_signed_in? %>
-          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition cursor-pointer" %>
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-800 transition cursor-pointer" %>
         <% else %>
-          <%= link_to 'Login', new_user_session_path, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+          <%= link_to 'Login', new_user_session_path, class: "bg-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-800 transition" %>
         <% end %>
       </div>
     </div>
