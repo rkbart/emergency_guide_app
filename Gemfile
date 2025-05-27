@@ -68,5 +68,7 @@ gem "httparty" # gem for API
 gem "dotenv-rails", groups: [ :development, :test ]
 
 # gem for printing
-gem 'wicked_pdf', '~> 2.8', '>= 2.8.2'
-gem 'wkhtmltopdf-binary'
+# gem "wicked_pdf", "~> 2.8", ">= 2.8.2"
+# gem "wkhtmltopdf-binary"
+
+gem "ransack"

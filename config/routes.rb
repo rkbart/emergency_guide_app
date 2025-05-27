@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get "chats/show"
   devise_for :users
   resources :emergency_contacts
+  resources :checklists
 
   unauthenticated do
     root to: "home#home", as: :unauthenticated_root
@@ -12,28 +14,17 @@ Rails.application.routes.draw do
 
   root to: "home#home"
 
-  resources :favorites, only: [ :index ]
-
   resources :categories do
-    collection { post :import }
+    resources :topics
   end
 
-  resources :topics do
-    collection { post :import }
-  end
-
-  resource :favorite, only: [ :create, :destroy ]
+  resources :favorites, only: [ :index, :create, :destroy ]
+  resources :chats, only: [ :create, :show ]
 
   resources :chat_ai, only: [ :index ] do
     collection do
       post :ask
       get :ask
-    end
-  end
-
-  resources :checklists do
-    collection do
-      get :print
     end
   end
 end

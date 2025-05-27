@@ -1,19 +1,25 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-
   def index
-    @favorite_topics = current_user.favorite_topics
+    @favorite_chats = current_user.favorite_chats.order(created_at: :desc)
+    @favorite_topics = current_user.favorite_topics.includes(:category)
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    current_user.favorites.create(topic: @topic)
-    redirect_back fallback_location: root_path, notice: "Topic added to favorites."
+    @favorite = current_user.favorites.create(
+      favoritable_type: params[:favoritable_type],
+      favoritable_id: params[:favoritable_id]
+    )
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    @favorite = current_user.favorites.find_by(topic_id: params[:topic_id])
-    @favorite.destroy if @favorite
-    redirect_back fallback_location: root_path, notice: "Topic removed from favorites."
+    @favorite = current_user.favorites.find(params[:id])
+    @favorite.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  def chat
+    @chat = current_user.favorite_chats.find(params[:chat_id])
   end
 end

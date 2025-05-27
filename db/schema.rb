@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_26_100612) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_26_182943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,6 +18,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_100612) do
     t.string "category"
     t.string "title"
     t.string "description"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "question"
+    t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "checklists", force: :cascade do |t|
@@ -43,10 +52,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_100612) do
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_favorites_on_topic_id"
+    t.string "favoritable_type", null: false
+    t.bigint "favoritable_id", null: false
+    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -76,9 +86,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_100612) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "users"
   add_foreign_key "checklists", "users"
   add_foreign_key "emergency_contacts", "users"
-  add_foreign_key "favorites", "topics"
   add_foreign_key "favorites", "users"
   add_foreign_key "topics", "categories"
 end

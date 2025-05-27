@@ -1,19 +1,89 @@
-<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-xl">
-  <p><strong><%= @topic.category.category.upcase %> </strong></p>
-  <p><strong><%= @topic.category.description %> </strong></p>
+<!-- app/views/topics/show.html.erb -->
+<div class="min-h-screen bg-gray-50 pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Breadcrumb Navigation -->
+    <nav class="flex mb-6" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li>
+          <%= link_to root_path, class: "text-red-600 hover:text-red-800" do %>
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+          <% end %>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+            <%= link_to category_path(@topic.category), class: "ml-2 text-sm font-medium text-red-600 hover:text-red-800" do %>
+              <%= @topic.category.category %> 
+            <% end %>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="ml-2 text-sm font-medium text-gray-500"><%= @topic.title %></span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 sm:px-6 bg-red-600">
+        <h1 class="text-lg leading-6 font-medium text-white">
+          <%= @topic.title %>
+        </h1>
+        <p class="mt-1 max-w-2xl text-sm text-red-100">
+          <%= @topic.description %>
+        </p>
+      </div>
+      
+      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl class="sm:divide-y sm:divide-gray-200">
+          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+              Symptoms
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= simple_format(@topic.symptoms, class: "text-gray-700") %>
+            </dd>
+          </div>
+          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+              Treatment
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= simple_format(@topic.treatment, class: "text-gray-700") %>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mt-6 flex justify-between">
+      <%= link_to "Back to #{@topic.category.category}", category_path(@topic.category), class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+      
+      <div class="flex space-x-3">
+        <% if user_signed_in? %>
+          <% if current_user.favorites.exists?(favoritable: @topic) %>
+            <%= button_to "Remove from Favorites", 
+                  favorite_path(current_user.favorites.find_by(favoritable: @topic)), 
+                  method: :delete, 
+                  class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+          <% else %>
+            <%= button_to "Add to Favorites", 
+                  favorites_path(favoritable_id: @topic.id, favoritable_type: 'Topic'), 
+                  method: :post, 
+                  class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-  <hr class="my-4">
-<div class="bg-white p-6 rounded-lg shadow-md space-y-4 text-lg">
-  <p><strong>Title:</strong> <%= @topic.title %></p>
-  <p><strong>Description:</strong> <%= @topic.description %></p>
-  <p><strong>Symptoms:</strong> <%= @topic.symptoms %></p>
-  <p><strong>Treatment:</strong> <%= @topic.treatment %></p>
-</div>
-<br>
-<% if current_user %>
-  <% if current_user.favorite_topics.include?(@topic) %>
-    <%= button_to "★ Favorited", category_topic_favorite_path(@topic.category, @topic), method: :delete, class: "text-yellow-500" %>
-  <% else %>
-    <%= button_to "☆ Add to Favorites", category_topic_favorite_path(@topic.category, @topic), method: :post, class: "text-gray-500" %>
-  <% end %>
-<% end %>
