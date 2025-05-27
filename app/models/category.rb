@@ -1,6 +1,11 @@
 require "csv"
 
 class Category < ApplicationRecord
+  has_many :topics
+
+  validates :category, presence: true, uniqueness: true
+  validates :title, presence: true
+
   def self.ransackable_attributes(auth_object = nil)
     [ "category", "description", "title" ]
   end
@@ -9,16 +14,17 @@ class Category < ApplicationRecord
     [ "topics" ]
   end
 
-  has_many :topics
-
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
-    rec = row.to_hash
-    Category.create!(
-      category: rec["category"],
-      title: rec["title"],
-      description: rec["description"]
-    )
+      record = row.to_hash
+      # Find or initialize by a unique attribute (using 'category' field as the unique identifier)
+      category = find_or_initialize_by(category: record["category"])
+
+      # Update other attributes
+      category.title = record["title"] if record["title"].present?
+      category.description = record["description"] if record["description"].present?
+
+      category.save! if category.new_record? || category.changed?
     end
   end
 end

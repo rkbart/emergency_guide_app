@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "chats/show"
   devise_for :users
   resources :emergency_contacts
   resources :checklists
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
 
   root to: "home#home"
 
-  get '/about', to: 'home#about', as: :about
+  get "/about", to: "home#about", as: :about
 
   resources :categories do
     collection { post :import }

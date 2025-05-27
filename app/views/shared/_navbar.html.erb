@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-16">
       <!-- Logo / App Name -->
       <%= link_to root_path, class: "flex items-center space-x-2" do%>
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-1">
           <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
             <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4z" />
           </svg>
@@ -12,7 +12,7 @@
       <% end %>
 
       <!-- Menu -->
-      <div class="hidden md:flex space-x-6 items-center">
+      <div class="hidden md:flex space-x-5 items-center">
         <!-- First Aid Dropdown -->
         <div x-data="{ open: false, timeout: null }" class="relative">
           <button
@@ -69,9 +69,9 @@
         <%= link_to 'About', about_path, class: "text-gray-700 hover:text-red-600 transition" %>
 
         <% if user_signed_in? %>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "bg-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-800 transition cursor-pointer" %>
         <% else %>
-          <%= link_to 'Login', new_user_session_path, class: "bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition" %>
+          <%= link_to 'Login', new_user_session_path, class: "bg-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-800 transition" %>
         <% end %>
       </div>
     </div>
