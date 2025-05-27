@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   def show
     @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
+    @is_favorited = current_user.favorites.exists?(favoritable: @topic) if user_signed_in?
   end
 
   private

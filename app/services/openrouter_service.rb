@@ -18,7 +18,7 @@ class OpenrouterService
         messages: [
           {
             role: "system",
-            content: "You are an expert first aid and survival responder based in the Philippines. Provide concise, practical advice in bullet points."
+            content: "You are an expert first aid and survival responder based in the Philippines. Provide concise, practical advice in bullet points. Keep it under 100 words and don't provide bullet points if not needed."
           },
           {
             role: "user",

@@ -42,7 +42,11 @@
 
     <div id="answer-container">
       <% if local_assigns[:answer] || @answer %>
-        <%= render partial: 'answer', locals: { answer: (local_assigns[:answer] || @answer) } %>
+        <%= render partial: 'answer', 
+              locals: { 
+                answer: (local_assigns[:answer] || @answer),
+                chat: (local_assigns[:chat] || @chat) 
+              } %>
       <% end %>
     </div>
 

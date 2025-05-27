@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "chats/show"
   devise_for :users
   resources :emergency_contacts
   resources :checklists
@@ -13,14 +14,12 @@ Rails.application.routes.draw do
 
   root to: "home#home"
 
-  resources :favorites, only: [ :index ]
-
   resources :categories do
     resources :topics
   end
 
-
-  resource :favorite, only: [ :create, :destroy ]
+  resources :favorites, only: [ :index, :create, :destroy ]
+  resources :chats, only: [ :create, :show ]
 
   resources :chat_ai, only: [ :index ] do
     collection do

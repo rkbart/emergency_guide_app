@@ -8,4 +8,20 @@
   <div class="whitespace-pre-line text-gray-700">
     <%= answer %>
   </div>
+  
+  <% if chat.present? && user_signed_in? %>
+    <div class="mt-4 flex justify-end">
+      <% if current_user.favorites.exists?(favoritable: chat) %>
+        <%= button_to "Remove from Favorites", 
+              favorite_path(current_user.favorites.find_by(favoritable: chat)), 
+              method: :delete, 
+              class: "text-sm text-red-600 hover:text-red-800" %>
+      <% else %>
+        <%= button_to "Add to Favorites", 
+              favorites_path(favoritable_id: chat.id, favoritable_type: 'Chat'), 
+              method: :post, 
+              class: "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
