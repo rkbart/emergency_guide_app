@@ -9,6 +9,21 @@ class CategoriesController < ApplicationController
     @category = Category.includes(:topics).find(params[:id])
   end
 
+  def import
+    unless current_user.valid_password?(params[:password])
+      redirect_to categories_path, alert: "Incorrect password. Import aborted."
+      return
+    end
+
+    if params[:file].blank?
+      redirect_to categories_path, alert: "No file selected."
+      return
+    end
+
+    Category.import(params[:file])
+    redirect_to categories_path, notice: "Category Data imported"
+  end
+
   private
 
   def record_not_found
