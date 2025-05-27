@@ -1,5 +1,12 @@
-<p>Welcome <%= @email %>!</p>
+<p>Welcome to Emergency Guide, <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Thank you for signing up for our emergency preparedness service. To complete your registration and access important safety resources, please confirm your email address by clicking the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirm My Emergency Guide Account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>This verification helps ensure you receive critical alerts and emergency information.</p>
+
+<p>If you didn't request this account, please ignore this email or contact our support team.</p>
+
+<p>Stay safe,<br>
+The Emergency Guide Team</p>

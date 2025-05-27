@@ -1,4 +1,13 @@
 require 'csv'
+require 'system_setup_service'
+
+EmergencyContact.destroy_all
+Checklist.destroy_all
+puts "Creating system default content..."
+SystemSetupService.create_defaults
+puts "Created #{EmergencyContact.system_defaults.count} default contacts"
+puts "Created #{Checklist.system_defaults.count} default checklist items"
+
 
 # Clear existing data (optional)
 Topic.destroy_all
@@ -42,4 +51,4 @@ end
 puts "Created #{Topic.count} topics"
 
 
-User.create!(email: "avionschoolproject@gmail.com", password: "password:123", confirmed_at: Time.now)
+# User.create!(email: "avionschoolproject@gmail.com", password: "password:123", confirmed_at: Time.now)

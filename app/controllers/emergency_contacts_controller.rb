@@ -1,13 +1,12 @@
 class EmergencyContactsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [ :index, :show ]
   before_action :set_emergency_contact, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @emergency_contacts = current_user.emergency_contacts
+    @emergency_contacts = EmergencyContact.for_display(current_user)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @emergency_contact = current_user.emergency_contacts.new
@@ -22,8 +21,7 @@ class EmergencyContactsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @emergency_contact.update(emergency_contact_params)
@@ -41,7 +39,12 @@ class EmergencyContactsController < ApplicationController
   private
 
   def set_emergency_contact
-    @emergency_contact = current_user.emergency_contacts.find(params[:id])
+    @emergency_contact =
+      if current_user
+        current_user.emergency_contacts.find(params[:id])
+      else
+        EmergencyContact.system_defaults.find(params[:id])
+      end
   end
 
   def emergency_contact_params
