@@ -81,9 +81,14 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: <%= ENV['DATABASE_URL'] %>
+    # database: <%= ENV['DATABASE_URL'] %>
+    # username: <%= ENV['PG_USERNAME'] %>
+    # password: <%= ENV['PG_PASSWORD'] %>
+    host: <%= ENV['PG_HOST'] %>
+    database: <%= ENV['DATABASE_NAME'] %>
     username: <%= ENV['PG_USERNAME'] %>
     password: <%= ENV['PG_PASSWORD'] %>
+    port: <%= ENV['PG_PORT'] || 5432 %>
     <<: *primary_production
     database: emergency_guide_app_production_cache
     migrations_paths: db/cache_migrate
