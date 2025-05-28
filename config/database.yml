@@ -81,10 +81,9 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: emergency_guide_app_production
-    username: emergency_guide_app
-    password: <%= ENV["EMERGENCY_GUIDE_APP_DATABASE_PASSWORD"] %>
-  cache:
+    database: <%= ENV['DATABASE_URL'] %>
+    username: <%= ENV['PG_USERNAME'] %>
+    password: <%= ENV['PG_PASSWORD'] %>
     <<: *primary_production
     database: emergency_guide_app_production_cache
     migrations_paths: db/cache_migrate
