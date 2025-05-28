@@ -90,13 +90,13 @@ production:
     password: <%= ENV['PG_PASSWORD'] %>
     port: <%= ENV['PG_PORT'] || 5432 %>
     <<: *primary_production
-    database: <%= ENV['DATABASE_NAME'] %>
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: emergency_guide_app_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: emergency_guide_app_production_cable
-    migrations_paths: db/cable_migrate
+    # database: <%= ENV['DATABASE_NAME'] %>
+    # migrations_paths: db/cache_migrate
+  # queue:
+  #   <<: *primary_production
+  #   database: emergency_guide_app_production_queue
+  #   migrations_paths: db/queue_migrate
+  # cable:
+  #   <<: *primary_production
+  #   database: emergency_guide_app_production_cable
+  #   migrations_paths: db/cable_migrate
