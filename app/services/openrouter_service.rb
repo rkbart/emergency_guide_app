@@ -5,7 +5,7 @@ class OpenrouterService
   debug_output $stdout  # This will show the raw HTTP request/response
 
   def self.generate_answer(question)
-    api_key = ENV['OPENROUTER_API_KEY']
+    api_key = ENV["OPENROUTER_API_KEY"]
 
     response = post(
       "/chat/completions",
