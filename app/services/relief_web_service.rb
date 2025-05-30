@@ -23,66 +23,57 @@ class ReliefWebService
     response = get("/v1/reports", query: {
       limit: limit,
       fields: {
-        include: [ "title", "headline", "url", "theme", "primary_country" ]
+        include: %w[title headline url theme primary_country]
       }
     })
 
     return [] unless response.success?
 
-    articles = response.parsed_response["data"].map do |item|
-      id = item["id"]
-      fields = item["fields"]
-      headline = fields["headline"] || {}
-      theme = determine_theme(fields["theme"])
-
-    {
-      id: id,
-      title: fields["title"],
-      url: fields["url"] || "https://reliefweb.int/report/#{id}",
-      description: fields.dig("headline", "summary") || fields["body"]&.truncate(300) || "No description available.",
-      image_url: extract_image_url(fields.dig("headline", "image")),
-      theme: theme
-    }
-  end
-
-  articles.compact # removes any nil values from the articles array, returning a new array with only the non-nil elements.
+    response.parsed_response["data"].map do |item|
+      build_article(item)
+    end.compact
   end
 
   private
 
+  def self.build_article(item)
+    fields = item["fields"]
+    {
+      id: item["id"],
+      title: fields["title"],
+      url: fields["url"] || fallback_url(item["id"]),
+      description: extract_description(fields),
+      image_url: extract_image_url(fields.dig("headline", "image")),
+      theme: determine_theme(fields["theme"])
+    }
+  end
+
+  def self.fallback_url(id)
+    "https://reliefweb.int/report/#{id}"
+  end
+
+  def self.extract_description(fields)
+    fields.dig("headline", "summary") ||
+      fields["body"]&.truncate(300) ||
+      "No description available."
+  end
+
   def self.determine_theme(theme_data)
-    return :general unless theme_data
-
-    # Find the first theme that matches our mapping
-    theme_data.each do |theme|
-      mapped_theme = THEME_MAPPING[theme["name"]]
-      return mapped_theme if mapped_theme
-    end
-
-    :general
+    theme_data&.find { |theme| THEME_MAPPING[theme["name"]] }&.then { |theme| THEME_MAPPING[theme["name"]] } || :general
   end
 
   def self.extract_image_url(image_data)
-    return nil unless image_data
-
-    # Try different image sizes in order of preference
-    image_data["url-large"] ||
-    image_data["url"] ||
-    image_data["url-thumb"] ||
-    image_data["url-small"]
+    image_data&.[]("url-large") ||
+    image_data&.[]("url") ||
+    image_data&.[]("url-thumb") ||
+    image_data&.[]("url-small")
   end
 
   def self.default_image_for(theme = :general)
-    theme_dir = Rails.root.join("app", "assets", "images", "defaults", theme.to_s)
-
-    # Verify theme directory exists and has images
-    if File.directory?(theme_dir)
-      images = Dir.glob(theme_dir.join("*.{jpg,png,gif}"))
-      if images.any?
-        "defaults/#{theme}/#{File.basename(images.sample)}"
-      else
-        "defaults/general/general1.jpg"
-      end
+    theme_path = Rails.root.join("app", "assets", "images", "defaults", theme.to_s)
+    images = Dir.glob(theme_path.join("*.{jpg,png,gif}"))
+    if images.any?
+      "defaults/#{theme}/#{File.basename(images.sample)}"
     else
       "defaults/general/general1.jpg"
     end
