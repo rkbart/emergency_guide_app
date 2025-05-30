@@ -15,6 +15,7 @@ class ChecklistsController < ApplicationController
     if @checklist.save
       redirect_to checklists_path, notice: "Item added successfully."
     else
+      flash.now[:alert] = @checklist.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,6 +26,7 @@ class ChecklistsController < ApplicationController
     if @checklist.update(checklist_params)
       redirect_to checklists_path, notice: "Item updated."
     else
+      flash.now[:alert] = @checklist.errors.full_messages.join(", ")
       render :edit, status: :unprocessable_entity
     end
   end

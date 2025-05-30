@@ -18,19 +18,17 @@ class Topic < ApplicationRecord
       category_title = rec["category"]&.strip
       category = Category.find_by(category: category_title)
 
-      next unless category # skip if category not found
+      next unless category
 
       topic = Topic.find_or_initialize_by(
         title: rec["title"],
         category_id: category.id
       )
 
-      # Update other attributes if they exist in CSV
       topic.description = rec["description"] if rec["description"].present?
       topic.symptoms = rec["symptoms"] if rec["symptoms"].present?
       topic.treatment = rec["treatment"] if rec["treatment"].present?
 
-      # Only save if new record or changes exist
       topic.save! if topic.new_record? || topic.changed?
     end
   end

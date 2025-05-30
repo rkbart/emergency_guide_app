@@ -6,16 +6,29 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = current_user.favorites.create(
+    @favorite = current_user.favorites.new(
       favoritable_type: params[:favoritable_type],
       favoritable_id: params[:favoritable_id]
     )
+
+    if @favorite.save
+      flash[:notice] = "Added to favorites."
+    else
+      flash[:alert] = @favorite.errors.full_messages.to_sentence.presence || "Could not add to favorites."
+    end
+
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    @favorite = current_user.favorites.find(params[:id])
-    @favorite.destroy
+    @favorite = current_user.favorites.find_by(id: params[:id])
+
+    if @favorite&.destroy
+      flash[:notice] = "Removed from favorites."
+    else
+      flash[:alert] = "Could not remove from favorites."
+    end
+
     redirect_back(fallback_location: root_path)
   end
 

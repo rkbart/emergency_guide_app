@@ -17,10 +17,7 @@ class Category < ApplicationRecord
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       record = row.to_hash
-      # Find or initialize by a unique attribute (using 'category' field as the unique identifier)
       category = find_or_initialize_by(category: record["category"])
-
-      # Update other attributes
       category.title = record["title"] if record["title"].present?
       category.description = record["description"] if record["description"].present?
 

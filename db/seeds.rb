@@ -1,5 +1,5 @@
 require 'csv'
-require 'system_setup_service'
+# require 'system_setup_service'
 
 EmergencyContact.destroy_all
 puts "Clearing contacts"

@@ -15,9 +15,10 @@ class EmergencyContactsController < ApplicationController
   def create
     @emergency_contact = current_user.emergency_contacts.new(emergency_contact_params)
     if @emergency_contact.save
-      redirect_to @emergency_contact, notice: "Emergency contact created."
+      redirect_to emergency_contacts_path, notice: "Emergency contact created."
     else
-      render :new
+      flash.now[:alert] = @emergency_contact.errors.full_messages.join(", ")
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,9 +26,10 @@ class EmergencyContactsController < ApplicationController
 
   def update
     if @emergency_contact.update(emergency_contact_params)
-      redirect_to emergency_contacts_path, notice: "Emergency contact updated."
+      redirect_to emergency_contacts_path, notice: "Contact updated successfully!"
     else
-      render :edit
+      flash.now[:alert] = @emergency_contact.errors.full_messages.join(", ")
+      render :edit, status: :unprocessable_entity
     end
   end
 

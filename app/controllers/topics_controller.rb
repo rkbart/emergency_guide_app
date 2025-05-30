@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
     end
 
     Topic.import(params[:file])
-    redirect_to categories_path, notice: "Category Data imported"
+    redirect_to categories_path, notice: "Topics Data imported"
   end
 
   private
