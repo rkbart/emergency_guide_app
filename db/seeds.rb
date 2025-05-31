@@ -51,5 +51,5 @@ end
 
 puts "Created #{Topic.count} topics"
 
-User.create!(email: "avionschoolproject@gmail.com", password: "password", confirmed_at: Time.now)
-puts "Created avionschoolproject@gmail.com user"
+# User.create!(email: "avionschoolproject@gmail.com", password: "password", confirmed_at: Time.now)
+# puts "Created avionschoolproject@gmail.com user"
